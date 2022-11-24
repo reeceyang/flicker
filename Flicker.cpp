@@ -12,6 +12,7 @@ Flicker::Flicker(const InstanceInfo& info)
                      system_clock::now().time_since_epoch()
                    ).count();
   GetParam(kFlicker)->InitDouble("Flicker", 0., 0., 100.0, 0.01, "%");
+  GetParam(kFlickerOn)->InitBool("Light On", true);
   GetParam(kFlickerLength)->InitMilliseconds("Length", 1., 1., 1000.);
 
 #if IPLUG_EDITOR // http://bit.ly/2S64BDd
@@ -29,6 +30,7 @@ Flicker::Flicker(const InstanceInfo& info)
     pGraphics->AttachControl(new ITextControl(b.GetMidVPadded(50).GetHShifted(250), "Flicker", IText(50, COLOR_WHITE)));
     pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-200).GetHShifted(250), kFlickerLength));
     pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-100).GetHShifted(250), kFlicker));
+    pGraphics->AttachControl(new IVSwitchControl(b.GetCentredInside(100).GetVShifted(-250).GetHShifted(250), kFlickerOn));
   };
 #endif
 }
@@ -49,14 +51,17 @@ void Flicker::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
       system_clock::now().time_since_epoch()
   ).count();
   srand((unsigned int) ms);
-  int randNum = rand() % 100;
+  int randNum = rand() % 10000;
 //  std::cout << std::to_string(randNum) << "\n";
   
-  const double flicker = GetParam(kFlicker)->Value();
+  const double flicker = GetParam(kFlicker)->Value() * 100;
   const int flickerLength = GetParam(kFlickerLength)->Value();
-  bool playSound = ms > flickerEndTime;
+  // if the light is on, a flicker turns the light off. if the light is off, the flicker turns the light on
+  const bool lightOn = GetParam(kFlickerOn)->Value();
+  bool notInFlicker = ms > flickerEndTime;
+  bool playSound = (notInFlicker && lightOn) || (!notInFlicker && !lightOn);
   
-  if (playSound && randNum < flicker) {
+  if (notInFlicker && randNum < flicker) {
     flickerEndTime = ms + flickerLength;
   }
   

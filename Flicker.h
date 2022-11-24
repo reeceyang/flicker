@@ -8,6 +8,7 @@ enum EParams
 {
   kFlicker = 0,
   kFlickerLength,
+  kFlickerOn,
   kInFlicker,
   kNumParams
 };
