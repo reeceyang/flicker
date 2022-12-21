@@ -2,15 +2,19 @@
 #include "IPlug_include_in_plug_src.h"
 #include "IControls.h"
 #include <iostream>
+#include <algorithm>
 #include <chrono>
 using namespace std::chrono;
 
 Flicker::Flicker(const InstanceInfo& info)
 : Plugin(info, MakeConfig(kNumParams, kNumPresets))
 {
-  flickerEndTime = duration_cast< milliseconds >(
-                     system_clock::now().time_since_epoch()
-                   ).count();
+  long long ms = duration_cast< milliseconds >(
+      system_clock::now().time_since_epoch()
+  ).count();
+  srand((unsigned int) ms);
+
+  flickerCountdown = 0;
   GetParam(kFlicker)->InitDouble("Flicker", 0., 0., 100.0, 0.01, "%");
   GetParam(kFlickerOn)->InitBool("Light On", true);
   GetParam(kFlickerLength)->InitMilliseconds("Length", 1., 1., 1000.);
@@ -47,22 +51,22 @@ void Flicker::HideOnLightbulb(bool hide)
 #if IPLUG_DSP
 void Flicker::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 {
-  long long ms = duration_cast< milliseconds >(
-      system_clock::now().time_since_epoch()
-  ).count();
-  srand((unsigned int) ms);
-  int randNum = rand() % 10000;
+  const int randNum = rand() % 10000;
+  const int sampleRate = GetSampleRate();
 //  std::cout << std::to_string(randNum) << "\n";
+//  std::cout << sampleRate << " " << nFrames << "\n";
+//  std::cout << flickerTime << " " << flickerEndTime << "\n";
   
   const double flicker = GetParam(kFlicker)->Value() * 100;
-  const int flickerLength = GetParam(kFlickerLength)->Value();
+  // scale milliseconds to samples
+  const int flickerLength = std::round(sampleRate * GetParam(kFlickerLength)->Value() / 1000.);
   // if the light is on, a flicker turns the light off. if the light is off, the flicker turns the light on
   const bool lightOn = GetParam(kFlickerOn)->Value();
-  bool notInFlicker = ms > flickerEndTime;
-  bool playSound = (notInFlicker && lightOn) || (!notInFlicker && !lightOn);
+  const bool notInFlicker = flickerCountdown <= 0;
+  const bool playSound = (notInFlicker && lightOn) || (!notInFlicker && !lightOn);
   
   if (notInFlicker && randNum < flicker) {
-    flickerEndTime = ms + flickerLength;
+    flickerCountdown = flickerLength;
   }
   
   if (GetUI()) {
@@ -76,5 +80,8 @@ void Flicker::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
       outputs[c][s] = playSound ? inputs[c][s] : 0;
     }
   }
+  
+  // subtract number of samples from countdown
+  flickerCountdown = std::max((long long) 0, flickerCountdown - nFrames);
 }
 #endif

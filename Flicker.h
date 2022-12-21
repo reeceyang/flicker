@@ -25,6 +25,6 @@ public:
   void HideOnLightbulb(bool hide);
   void ProcessBlock(sample** inputs, sample** outputs, int nFrames) override;
   
-  long long flickerEndTime;
+  long long flickerCountdown; // when the most recent flicker should end
 #endif
 };
