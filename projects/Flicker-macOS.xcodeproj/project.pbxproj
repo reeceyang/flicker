@@ -3325,6 +3325,7 @@
 					"$(VST3_SDK)",
 				);
 				INFOPLIST_FILE = "../resources/Flicker-VST3-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aliximusic.vst3.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = vst3;
@@ -3347,6 +3348,7 @@
 					"$(VST3_SDK)",
 				);
 				INFOPLIST_FILE = "../resources/Flicker-VST3-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aliximusic.vst3.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = vst3;
@@ -3369,6 +3371,7 @@
 					"$(VST3_SDK)",
 				);
 				INFOPLIST_FILE = "../resources/Flicker-VST3-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aliximusic.vst3.${BINARY_NAME}";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = vst3;

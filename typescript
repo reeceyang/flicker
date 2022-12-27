@@ -1,0 +1,43 @@
+Script started on Mon Dec 26 22:12:43 2022
+[oh-my-zsh] Would you like to update? [Y/n] ^C[1m[7m%[27m[1m[0m                                                                                ]2;ry@Reeces-MacBook-Air:~/cs/iPlug2/Examples/Flicker]1;..mples/Flicker[0m[27m[24m[J[31mry[00m[37m at [33mReeces-MacBook-Air[00m [37min [32m~/cs/iPlug2/Examples/Flicker[00m [37mon [34mmain [31m✗[00m[00m 
+[37m>[00m [K[60C[1A [00m[[33m1adce01[00m] [31m[00m [37m22:12[1B[00m[77D[?1h=[?2004hsscip  ripts[?1l>[?2004l
+]2;scripts]1;scripts[1m[7m%[27m[1m[0m                                                                                ]2;ry@Reeces-MacBook-Air:~/cs/iPlug2/Examples/Flicker/scripts]1;..icker/scripts[0m[27m[24m[J[31mry[00m[37m at [33mReeces-MacBook-Air[00m [37min [32m~/cs/iPlug2/Examples/Flicker/scripts[00m [37mon [34mmain [31m✗[00m[00m 
+[37m>[00m [K[60C[1A [00m[[33m1adce01[00m] [31m[00m [37m22:12[1B[00m[77D[?1h=[?2004hlls[?1l>[?2004l
+]2;ls -G]1;lsmake_zip.py                 [31mprepare_resources-ios.py[39;49m[0m
+[31mmakedist-mac.sh[39;49m[0m             [31mprepare_resources-mac.py[39;49m[0m
+[31mmakedist-web.sh[39;49m[0m             prepare_resources-win.py
+makedist-win.bat            [31mupdate_installer_version.py[39;49m[0m
+postbuild-win.bat           update_version.py
+prebuild-win.bat
+[1m[7m%[27m[1m[0m                                                                                ]2;ry@Reeces-MacBook-Air:~/cs/iPlug2/Examples/Flicker/scripts]1;..icker/scripts[0m[27m[24m[J[31mry[00m[37m at [33mReeces-MacBook-Air[00m [37min [32m~/cs/iPlug2/Examples/Flicker/scripts[00m [37mon [34mmain [31m✗[00m[00m 
+[37m>[00m [K[60C[1A [00m[[33m1adce01[00m] [31m[00m [37m22:12[1B[00m[77D[?1h=[?2004h../makedist-mac.sh   [?1l>[?2004l
+]2;./makedist-mac]1;./makedist-maczsh: no such file or directory: ./makedist-mac
+[1m[7m%[27m[1m[0m                                                                                ]2;ry@Reeces-MacBook-Air:~/cs/iPlug2/Examples/Flicker/scripts]1;..icker/scripts[0m[27m[24m[J[31mry[00m[37m at [33mReeces-MacBook-Air[00m [37min [32m~/cs/iPlug2/Examples/Flicker/scripts[00m [37mon [34mmain [31m✗[00m[00m 
+[37m>[00m [K[59C[1A [00m[[33m1adce01[00m] [31m×[00m [37m22:13[1B[00m[77D[?1h=[?2004hssh make
+[0mmake                make_zip.py         [1;32mmakedist-web.sh[0m*    makeinfo          
+[Jmake_chlayout_test  [J[1;32mmakedist-mac.sh[0m*    [Jmakedist-win.bat    [J                  [A[A[0m[27m[24m[2Csh make[K[52C[1A [00m[[33m1adce01[00m] [31m×[00m [37m22:13[1B[00m[70Ddis
+[J[A[12Ct-mac.sh[1m [0m[0m [?1l>[?2004l
+[J]2;sh makedist-mac.sh]1;shmaking Flicker version 1.0.0 mac distribution...
+
+Traceback (most recent call last):
+  File "./scripts/update_installer_version.py", line 13, in <module>
+    from parse_config import parse_config
+ModuleNotFoundError: No module named 'parse_config'
+touching source to force recompile
+build failed due to following errors:
+
+xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance
+[1m[7m%[27m[1m[0m                                                                                ]2;ry@Reeces-MacBook-Air:~/cs/iPlug2/Examples/Flicker/scripts]1;..icker/scripts[0m[27m[24m[J[31mry[00m[37m at [33mReeces-MacBook-Air[00m [37min [32m~/cs/iPlug2/Examples/Flicker/scripts[00m [37mon [34mmain [31m✗[00m[00m 
+[37m>[00m [K[59C[1A [00m[[33m1adce01[00m] [31m×[00m [37m22:13[1B[00m[77D[?1h=[?2004h...[?1l>[?2004l
+]2;..]1;..[1m[7m%[27m[1m[0m                                                                                ]2;ry@Reeces-MacBook-Air:~/cs/iPlug2/Examples/Flicker]1;..mples/Flicker[0m[27m[24m[J[31mry[00m[37m at [33mReeces-MacBook-Air[00m [37min [32m~/cs/iPlug2/Examples/Flicker[00m [37mon [34mmain [31m✗[00m[00m 
+[37m>[00m [K[60C[1A [00m[[33m1adce01[00m] [31m[00m [37m22:16[1B[00m[77D[?1h=[?2004hggit status[?1l>[?2004l
+]2;git status]1;git [31mM[m Flicker.RPP
+ [31mM[m Flicker.RPP-bak
+ [31mM[m Flicker.cpp
+ [31mM[m Flicker.xcworkspace/xcuserdata/ry.xcuserdatad/UserInterfaceState.xcuserstate
+ [31mM[m config.h
+[31m??[m resources/img/switch.png
+[31m??[m resources/img/switch@2x.png
+[31m??[m typescript
+[1m[7m%[27m[1m[0m                                                                                ]2;ry@Reeces-MacBook-Air:~/cs/iPlug2/Examples/Flicker]1;..mples/Flicker[0m[27m[24m[J[31mry[00m[37m at [33mReeces-MacBook-Air[00m [37min [32m~/cs/iPlug2/Examples/Flicker[00m [37mon [34mmain [31m✗[00m[00m 
+[37m>[00m [K[60C[1A [00m[[33m1adce01[00m] [31m[00m [37m22:16[1B[00m[77D[?1h=[?2004h

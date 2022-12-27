@@ -25,16 +25,18 @@ Flicker::Flicker(const InstanceInfo& info)
   };
   
   mLayoutFunc = [&](IGraphics* pGraphics) {
+    const IBitmap switchBitmap = pGraphics->LoadBitmap((PNGSWITCH_FN), 2, true);
+    
     pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
     pGraphics->AttachPanelBackground(COLOR_GRAY);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
     const IRECT b = pGraphics->GetBounds();
     pGraphics->AttachControl(new IBitmapControl(0, 0, pGraphics->LoadBitmap(OFF_FN, 1)));
     pGraphics->AttachControl(new IBitmapControl(0, 0, pGraphics->LoadBitmap(ON_FN, 1)), kInFlicker);
-    pGraphics->AttachControl(new ITextControl(b.GetMidVPadded(50).GetHShifted(250), "Flicker", IText(50, COLOR_WHITE)));
     pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-200).GetHShifted(250), kFlickerLength));
-    pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-100).GetHShifted(250), kFlicker));
-    pGraphics->AttachControl(new IVSwitchControl(b.GetCentredInside(100).GetVShifted(-250).GetHShifted(250), kFlickerOn));
+    pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-90).GetHShifted(250), kFlicker));
+    pGraphics->AttachControl(new ITextControl( b.GetCentredInside(100).GetVShifted(-240).GetHShifted(350), "Flicker On/Off", IText(18, COLOR_WHITE)));
+    pGraphics->AttachControl(new IBSwitchControl(b.GetCentredInside(100).GetVShifted(-200).GetHShifted(350), switchBitmap, kFlickerOn));
   };
 #endif
 }

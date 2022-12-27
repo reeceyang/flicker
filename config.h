@@ -54,3 +54,4 @@
 #define ROBOTO_FN "Roboto-Regular.ttf"
 #define ON_FN "on.png"
 #define OFF_FN "off.png" 
+#define PNGSWITCH_FN "switch.png"
